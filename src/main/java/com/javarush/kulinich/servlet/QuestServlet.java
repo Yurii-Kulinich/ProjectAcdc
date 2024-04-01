@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,17 +23,27 @@ public class QuestServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    Long questId = Long.valueOf(req.getParameter("questId"));
+
     Integer stageId = Integer.valueOf(req.getParameter("stageId"));
-    Quest quest = questService.get(questId);
-
-    List<Question> questions = questionService.findByQuestId(questId);
+    HttpSession currentSession = req.getSession();
     if (stageId == 0) {
-      req.setAttribute("description", quest.getDescription());
-    }
-    req.setAttribute("questions", questions);
+      Long questId = Long.valueOf(req.getParameter("questId"));
+      Quest quest = questService.get(questId);
+      List<Question> questions = questionService.findByQuestId(questId);
 
+      currentSession.setAttribute("quest", quest);
+      currentSession.setAttribute("questions", questions);
+
+      req.setAttribute("description", quest.getDescription());
+      req.getRequestDispatcher("quest.jsp").forward(req, resp);
+    }
+
+    Question currentQuestion = ((List<Question>) currentSession.getAttribute("questions")).get(stageId - 1);
+    req.setAttribute("question", currentQuestion);
     req.getRequestDispatcher("quest.jsp").forward(req, resp);
+
+
+
 
   }
 }

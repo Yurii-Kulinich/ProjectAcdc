@@ -44,19 +44,13 @@
   </div>
 
 </c:if>
-<ul>
-  <c:forEach var="question" items="${requestScope.questions}">
-    <li>
-      <span>${question.text}</span>
-      <ul>
-        <c:forEach var="answer" items="${question.answers}">
-          <li>
-            <span>${answer.text}</span>
-          </li>
-        </c:forEach>
-      </ul>
-    </li>
-  </c:forEach>
-</ul>
+<c:if test="${empty requestScope.description}">
+<h1>${requestScope.question.text}</h1>
+    <ul>
+    <c:forEach var="answer" items="${requestScope.question.answers}">
+        <li>${answer.text}</li>
+    </c:forEach>
+    </ul>
+</c:if>
 </body>
 </html>
