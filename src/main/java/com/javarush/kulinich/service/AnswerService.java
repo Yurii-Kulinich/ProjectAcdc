@@ -22,12 +22,13 @@ public class AnswerService {
   }
 
 
-//  public List<Question> findByQuestId(Long id) {
-//    Question pattern = Question.builder()
-//        .questId(id)
-//        .build();
-//    return questionRepository.find(pattern).collect(Collectors.toList());
-//  }
+  public List<Answer> findByQuestAndQuestionId(Long questId, Long questionId) {
+    Answer pattern = Answer.builder()
+        .questId(questId)
+        .questionId(questionId)
+        .build();
+    return answerRepository.find(pattern).collect(Collectors.toList());
+  }
 
   public void createDefault() {
     //First Quest:

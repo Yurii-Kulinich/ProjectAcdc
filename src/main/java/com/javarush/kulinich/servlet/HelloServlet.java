@@ -1,6 +1,7 @@
 package com.javarush.kulinich.servlet;
 
 import com.javarush.kulinich.entity.Quest;
+import com.javarush.kulinich.service.AnswerService;
 import com.javarush.kulinich.service.QuestService;
 import com.javarush.kulinich.service.QuestionService;
 import jakarta.servlet.ServletException;
@@ -17,7 +18,7 @@ public class HelloServlet extends HttpServlet {
 
   private final QuestService questService = QuestService.getInstance();
   private final QuestionService questionService = QuestionService.getInstance();
-
+  private final AnswerService answerService = AnswerService.getInstance();
 
 
   @Override
@@ -33,8 +34,10 @@ public class HelloServlet extends HttpServlet {
     req.getRequestDispatcher("/welcome.jsp").forward(req, resp);
   }
 
-  private void initGame(){
-  questService.createDefault();
-  questionService.createDefault();
+  private void initGame() {
+    answerService.createDefault();
+    questionService.createDefault();
+    questService.createDefault();
+
   }
 }

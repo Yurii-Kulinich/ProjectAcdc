@@ -17,6 +17,13 @@
   <c:forEach var="question" items="${requestScope.questions}">
     <li>
       <span>${question.text}</span>
+      <ul>
+        <c:forEach var="answer" items="${question.answers}">
+          <li>
+            <span>${answer.text}</span>
+          </li>
+        </c:forEach>
+      </ul>
     </li>
   </c:forEach>
 </ul>
