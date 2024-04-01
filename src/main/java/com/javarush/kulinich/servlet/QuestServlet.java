@@ -21,11 +21,13 @@ public class QuestServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
+
     Long questId = Long.valueOf(req.getParameter("questId"));
+    Integer stageId = Integer.valueOf(req.getParameter("stageId"));
     Quest quest = questService.get(questId);
-        Integer stageId = Integer.valueOf(req.getParameter("stageId"));
+
     List<Question> questions = questionService.findByQuestId(questId);
-    if (stageId == 1) {
+    if (stageId == 0) {
       req.setAttribute("description", quest.getDescription());
     }
     req.setAttribute("questions", questions);
