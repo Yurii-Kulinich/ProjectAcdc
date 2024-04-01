@@ -28,8 +28,8 @@ public class QuestService {
         .questId(0L)
         .build();
     Quest quest1 = Quest.builder()
-        .name("Test quest")
-        .description("Best quest for newbies")
+        .name("Quest: Journey of the Java Developer")
+        .description("Welcome, brave adventurer, to the Journey of the Java Developer! Embark on this quest and prove your mettle in the world of Java programming. Throughout your journey, you will encounter challenges and questions that will test your knowledge and skills. Remember, there are no right or wrong answers, but your choices will shape your path and determine your score. Are you ready to begin?")
         .questions(questionRepository.find(questionPattern).collect(Collectors.toList()))
         .build();
     Quest quest2 = Quest.builder()
@@ -55,6 +55,10 @@ public class QuestService {
   }
 
   public boolean isEmpty() {
-    return questionRepository.isEmpty();
+    return questRepository.isEmpty();
+  }
+
+  public Quest get(Long questId) {
+    return questRepository.get(questId);
   }
 }

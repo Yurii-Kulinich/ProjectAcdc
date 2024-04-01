@@ -13,6 +13,13 @@
     <title>Title</title>
 </head>
 <body>
+<c:if test="${not empty requestScope.description}">
+
+  <div>
+    ${requestScope.description}
+  </div>
+
+</c:if>
 <ul>
   <c:forEach var="question" items="${requestScope.questions}">
     <li>

@@ -17,7 +17,7 @@
 <ul>
     <c:forEach var="quest" items="${requestScope.quests}">
         <li>
-            <a href="/quest?questId=${quest.id}">${quest.name}</a>
+            <a href="/quest?questId=${quest.id}&stageId=1">${quest.name}</a>
         </li>
     </c:forEach>
 </ul>
