@@ -15,6 +15,7 @@ public class Quest implements AbstractEntity {
   private Long id;
   private String name;
   private String description;
+  private List<String> congrats;
   private List <Question> questions;
 
 

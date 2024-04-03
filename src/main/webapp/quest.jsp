@@ -17,6 +17,7 @@
         justify-content: space-evenly; /* Distribute space evenly between buttons */
 
       }
+
       .button-container button {
         margin-right: 10px; /* Add some margin between buttons */
       }
@@ -25,14 +26,15 @@
 <body>
 <c:if test="${not empty requestScope.description}">
 
-  <div>
-    ${requestScope.description}
-      <!-- Button to /quest servlet -->
+    <div>
+            ${requestScope.description}
+        <!-- Button to /quest servlet -->
         <div class="button-container">
             <!-- Button to /quest servlet -->
             <form action="${pageContext.request.contextPath}/quest" method="get">
                 <input type="hidden" name="questId" value="1">
                 <input type="hidden" name="stageId" value="1">
+                <input type="hidden" name="score" value="0">
                 <button type="submit">Go to Quest</button>
             </form>
 
@@ -41,15 +43,25 @@
                 <button type="submit">Start</button>
             </form>
         </div>
-  </div>
+    </div>
 
 </c:if>
-<c:if test="${empty requestScope.description}">
-<h1>${requestScope.question.text}</h1>
+<c:if test="${not empty requestScope.congrats}">
+    <div>
+            ${requestScope.congrats}
+    </div>
+    <div>
+        <span>Your final score is ${sessionScope.score}!</span>
+    </div>
+</c:if>
+<c:if test="${empty requestScope.description && empty requestScope.congrats}">
+    <h1>${requestScope.question.text}</h1>
     <ul>
-    <c:forEach var="answer" items="${requestScope.question.answers}">
-        <li>${answer.text}</li>
-    </c:forEach>
+        <c:forEach var="answer" items="${requestScope.question.answers}">
+            <li>
+                <a href="/quest?stageId=${requestScope.stageId}&score=${answer.score}">${answer.text}</a>
+            </li>
+        </c:forEach>
     </ul>
 </c:if>
 </body>
