@@ -23,8 +23,6 @@ public class QuestServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    int questLength = 0;
-
     Integer stageId = Integer.valueOf(req.getParameter("stageId"));
     HttpSession currentSession = req.getSession();
 
@@ -34,7 +32,6 @@ public class QuestServlet extends HttpServlet {
       Long questId = Long.valueOf(req.getParameter("questId"));
       Quest quest = questService.get(questId);
       List<Question> questions = questionService.findByQuestId(questId);
-      questLength = questions.size();
 
       currentSession.setAttribute("quest", quest);
       currentSession.setAttribute("questions", questions);

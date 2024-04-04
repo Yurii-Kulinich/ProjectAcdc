@@ -12,23 +12,106 @@
 <head>
     <title>Title</title>
     <style>
-      .button-container {
-        display: flex; /* Use flexbox layout */
-        justify-content: space-evenly; /* Distribute space evenly between buttons */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
 
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-item {
+        color: #333;
+        text-decoration: none;
+        background: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 20px 30px;
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .menu-item:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-3px);
       }
 
       .button-container button {
-        margin-right: 10px; /* Add some margin between buttons */
+        margin: 0 10px;
+        padding: 20px 30px; /* Match padding with list items */
+        background-color: #f9f9f9; /* Match background color with list items */
+        color: #333; /* Match text color with list items */
+        border: 1px solid #ccc;
+        border-radius: 10px; /* Match border-radius with list items */
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-size: 20px; /* Increase font size */
+        font-weight: bold; /* Use bold font weight */
       }
+
+      .button-container button:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-3px);
+      }
+
+      h1.question-heading {
+        color: #007bff; /* Text color */
+        margin-top: 30px; /* Top margin */
+        font-size: 24px; /* Font size */
+        font-weight: bold; /* Font weight */
+      }
+
+      .message {
+        font-size: 26px;
+        margin-bottom: 10px;
+      }
+
+      .congrats-container {
+        margin-top: 30px;
+      }
+
+      .congrats-message {
+        font-size: 26px;
+        margin-bottom: 10px;
+      }
+
+      .final-score {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 20px;
+      }
+
+      h1.welcome-heading {
+        color: #2760a3;
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+
     </style>
 </head>
 <body>
 <c:if test="${not empty requestScope.description}">
 
     <div>
-            ${requestScope.description}
-        <!-- Button to /quest servlet -->
+        <h1 class="welcome-heading">
+                ${requestScope.description}
+        </h1>
         <div class="button-container">
             <!-- Button to /quest servlet -->
             <form action="${pageContext.request.contextPath}/quest" method="get">
@@ -39,7 +122,7 @@
             </form>
 
             <!-- Button to /start servlet -->
-            <form action="/start?questId=1" method="get">
+            <form action="/start" method="get">
                 <button type="submit">Start</button>
             </form>
         </div>
@@ -47,19 +130,35 @@
 
 </c:if>
 <c:if test="${not empty requestScope.congrats}">
-    <div>
-            ${requestScope.congrats}
-    </div>
-    <div>
-        <span>Your final score is ${sessionScope.score}!</span>
+    <div class="congrats-container">
+        <h1 class="welcome-heading">
+                ${requestScope.congrats}
+        </h1>
+        <div class="final-score">
+            Your final score is ${sessionScope.score}!
+        </div>
+        <div class="button-container">
+            <!-- Button to restart quest -->
+            <form action="${pageContext.request.contextPath}/quest" method="get">
+                <input type="hidden" name="questId" value="1">
+                <input type="hidden" name="stageId" value="0">
+                <input type="hidden" name="score" value="0">
+                <button type="submit">Restart Quest</button>
+            </form>
+
+            <!-- Button to go to quest selection -->
+            <form action="/start" method="get">
+                <button type="submit">To Quest Selection</button>
+            </form>
+        </div>
     </div>
 </c:if>
 <c:if test="${empty requestScope.description && empty requestScope.congrats}">
-    <h1>${requestScope.question.text}</h1>
-    <ul>
+    <h1 class="welcome-heading">${requestScope.question.text}</h1>
+    <ul class="menu">
         <c:forEach var="answer" items="${requestScope.question.answers}">
             <li>
-                <a href="/quest?stageId=${requestScope.stageId}&score=${answer.score}">${answer.text}</a>
+            <li><a class="menu-item" href="/quest?stageId=${requestScope.stageId}&score=${answer.score}">${answer.text}</a>
             </li>
         </c:forEach>
     </ul>
