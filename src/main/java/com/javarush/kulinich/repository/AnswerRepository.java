@@ -5,15 +5,6 @@ import java.util.stream.Stream;
 
 public class AnswerRepository extends BaseRepository<Answer> {
 
-  private static final AnswerRepository INSTANCE = new AnswerRepository();
-
-  private AnswerRepository() {
-
-  }
-  public static AnswerRepository getInstance() {
-    return INSTANCE;
-  }
-
   @Override
   public Stream<Answer> find(Answer pattern) {
     return map.values().stream()

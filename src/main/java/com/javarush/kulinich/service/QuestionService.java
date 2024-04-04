@@ -5,21 +5,13 @@ import com.javarush.kulinich.entity.Question;
 import com.javarush.kulinich.repository.QuestionRepository;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class QuestionService {
 
-  private final static QuestionService INSTANCE = new QuestionService();
-
-  private final QuestionRepository questionRepository = QuestionRepository.getInstance();
-  private final AnswerService answerService = AnswerService.getInstance();
-
-  private QuestionService() {
-
-  }
-
-  public static QuestionService getInstance() {
-    return INSTANCE;
-  }
+  private final QuestionRepository questionRepository;
+  private final AnswerService answerService;
 
 
   public List<Question> findByQuestId(Long id) {

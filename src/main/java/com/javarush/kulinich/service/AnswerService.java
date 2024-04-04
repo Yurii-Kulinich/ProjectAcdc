@@ -4,20 +4,12 @@ import com.javarush.kulinich.entity.Answer;
 import com.javarush.kulinich.repository.AnswerRepository;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class AnswerService {
 
-  private final static AnswerService INSTANCE = new AnswerService();
-
-  private final AnswerRepository answerRepository = AnswerRepository.getInstance();
-
-  private AnswerService() {
-
-  }
-
-  public static AnswerService getInstance() {
-    return INSTANCE;
-  }
+  private final AnswerRepository answerRepository;
 
 
   public List<Answer> findByQuestAndQuestionId(Long questId, Long questionId) {

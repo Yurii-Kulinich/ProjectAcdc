@@ -7,20 +7,13 @@ import com.javarush.kulinich.repository.QuestionRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class QuestService {
 
-  private static final QuestService INSTANCE = new QuestService();
-  private final QuestRepository questRepository = QuestRepository.getInstance();
-  private final QuestionRepository questionRepository = QuestionRepository.getInstance();
-
-  private QuestService() {
-
-  }
-
-  public static QuestService getInstance() {
-    return INSTANCE;
-  }
+  private final QuestRepository questRepository;
+  private final QuestionRepository questionRepository;
 
 
   public void createDefault() {

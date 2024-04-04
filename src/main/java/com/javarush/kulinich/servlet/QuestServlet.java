@@ -1,5 +1,6 @@
 package com.javarush.kulinich.servlet;
 
+import com.javarush.kulinich.config.Winter;
 import com.javarush.kulinich.entity.Quest;
 import com.javarush.kulinich.entity.Question;
 import com.javarush.kulinich.service.QuestService;
@@ -16,8 +17,8 @@ import java.util.List;
 @WebServlet("/quest")
 public class QuestServlet extends HttpServlet {
 
-  private final QuestionService questionService = QuestionService.getInstance();
-  private final QuestService questService = QuestService.getInstance();
+  private final QuestionService questionService = Winter.find(QuestionService.class);
+  private final QuestService questService = Winter.find(QuestService.class);
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
