@@ -1,10 +1,9 @@
-package com.javarush.khmelov.config;
-
-import lombok.SneakyThrows;
+package com.javarush.kulinich.config;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.SneakyThrows;
 
 public class Winter {
 
