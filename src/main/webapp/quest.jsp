@@ -118,12 +118,12 @@
                 <input type="hidden" name="questId" value="1">
                 <input type="hidden" name="stageId" value="1">
                 <input type="hidden" name="score" value="0">
-                <button type="submit">Go to Quest</button>
+                <button type="submit">Start quest</button>
             </form>
 
             <!-- Button to /start servlet -->
             <form action="/start" method="get">
-                <button type="submit">Start</button>
+                <button type="submit">Choose another quest</button>
             </form>
         </div>
     </div>

@@ -30,34 +30,7 @@ public class QuestionService {
   }
 
   public void createDefault() {
-//    Question first = Question.builder()
-//        .questId(1L)
-//        .text("""
-//            First quest
-//            First question
-//            """)
-//        .stage(1)
-//        .build();
-//    Question second = Question.builder()
-//        .questId(1L)
-//        .text("""
-//            Second quest
-//            Second question
-//            """)
-//        .stage(2)
-//        .build();
-//    Question third = Question.builder()
-//        .questId(1L)
-//        .text("""
-//            Third quest
-//            Third question
-//            """)
-//        .stage(3)
-//        .build();
-//    questionRepository.create(first);
-//    questionRepository.create(second);
-//    questionRepository.create(third);
-
+    //Quest 1
     // Stage 1: The Foundation
     List<Answer> firstQ = answerService.findByQuestAndQuestionId(1L, 1l);
 
@@ -86,6 +59,39 @@ public class QuestionService {
         .text("What is the significance of the 'javac' command in Java development?").stage(4)
         .answers(fourthQ)
         .build());
+
+    //Quest2
+    // Stage 1: The Basics
+    List<Answer> firstQuest2 = answerService.findByQuestAndQuestionId(2L, 1L);
+    questionRepository.create(
+        Question.builder().questId(2L).text("What is the primary function of an assembler in programming?")
+            .answers(firstQuest2)
+            .stage(1).build());
+
+// Stage 2: Understanding Labels
+    List<Answer> secondQuest2 = answerService.findByQuestAndQuestionId(2L, 2L);
+    questionRepository.create(
+        Question.builder().questId(2L).text("What is the purpose of a label in assembly language?")
+            .answers(secondQuest2)
+            .stage(2)
+            .build());
+
+// Stage 3: Characteristics of Assembly Language
+    List<Answer> thirdQuest2 = answerService.findByQuestAndQuestionId(2L, 3L);
+    questionRepository.create(Question.builder().questId(2L)
+        .text("Which of the following is NOT a characteristic of assembly language programming?")
+        .stage(3)
+        .answers(thirdQuest2)
+        .build());
+
+// Stage 4: Linking Assembly Programs
+    List<Answer> fourthQuest2 = answerService.findByQuestAndQuestionId(2L, 4L);
+    questionRepository.create(Question.builder().questId(2L)
+        .text("What is the role of the linker in assembling and linking assembly language programs?")
+        .stage(4)
+        .answers(fourthQuest2)
+        .build());
+
   }
 
   public boolean isEmpty() {

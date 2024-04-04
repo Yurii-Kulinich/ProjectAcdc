@@ -71,7 +71,8 @@
     </style>
 </head>
 <body>
-<h1 class="welcome-heading">Welcome</h1>
+<h1 class="welcome-heading">Welcome dear Guest</h1>
+<h1 class="welcome-heading">Please choose one quest from the list below</h1>
 <ul class="menu">
     <c:forEach var="quest" items="${requestScope.quests}">
         <li>

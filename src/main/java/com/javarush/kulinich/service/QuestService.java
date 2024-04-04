@@ -19,21 +19,17 @@ public class QuestService {
   }
 
   public static QuestService getInstance() {
-
     return INSTANCE;
   }
 
 
   public void createDefault() {
-    List<String> congratulatoryMessages = new ArrayList<>();
-
-    congratulatoryMessages.add("Congratulations! Your exceptional performance on the test truly stands out. Your dedication and hard work have paid off tremendously. Keep up the fantastic work!");
-
-    congratulatoryMessages.add("Congratulations! Your impressive score on the test reflects your solid understanding of the material. Your effort and perseverance have yielded remarkable results. Keep pushing yourself to reach even greater heights!");
-
-    congratulatoryMessages.add("Congratulations! You've passed the test, showcasing your understanding of the subject matter. Your determination and commitment have led you to this accomplishment. Keep striving for improvement and success!");
+    List<String> congratulatoryMessages = getStrings();
     Question questionPattern = Question.builder()
         .questId(0L)
+        .build();
+    Question questionPatternQuest2 = Question.builder()
+        .questId(1L)
         .build();
     Quest quest1 = Quest.builder()
         .name("Quest: Journey of the Java Developer")
@@ -43,12 +39,24 @@ public class QuestService {
         .congrats(congratulatoryMessages)
         .build();
     Quest quest2 = Quest.builder()
-        .name("Test quest2")
-        .description("To make this page look more Solid")
-        .questions(questionRepository.find(questionPattern).collect(Collectors.toList()))
+        .name("Quest: Assembler Language Fundamentals")
+        .description("Welcome, adventurer, to the beginning of your journey in mastering assembly language! In this stage, you will learn the fundamental concepts and principles of assembly programming. Get ready to lay the groundwork for your assembler language proficiency! Remember, there are no right or wrong answers, but your choices will shape your path and determine your score. Are you ready to begin?")
+        .questions(questionRepository.find(questionPatternQuest2).collect(Collectors.toList()))
+        .congrats(congratulatoryMessages)
         .build();
     questRepository.create(quest1);
     questRepository.create(quest2);
+  }
+
+  private static List<String> getStrings() {
+    List<String> congratulatoryMessages = new ArrayList<>();
+
+    congratulatoryMessages.add("Congratulations! Your exceptional performance on the test truly stands out. Your dedication and hard work have paid off tremendously. Keep up the fantastic work!");
+
+    congratulatoryMessages.add("Congratulations! Your impressive score on the test reflects your solid understanding of the material. Your effort and perseverance have yielded remarkable results. Keep pushing yourself to reach even greater heights!");
+
+    congratulatoryMessages.add("Congratulations! You've passed the test, showcasing your understanding of the subject matter. Your determination and commitment have led you to this accomplishment. Keep striving for improvement and success!");
+    return congratulatoryMessages;
   }
 
   public List<Quest> findAll() {
