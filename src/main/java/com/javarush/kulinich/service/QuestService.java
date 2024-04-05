@@ -41,7 +41,7 @@ public class QuestService {
     questRepository.create(quest2);
   }
 
-  private static List<String> getStrings() {
+  private List<String> getStrings() {
     List<String> congratulatoryMessages = new ArrayList<>();
 
     congratulatoryMessages.add("Congratulations! Your exceptional performance on the test truly stands out. Your dedication and hard work have paid off tremendously. Keep up the fantastic work!");
